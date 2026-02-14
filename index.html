@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>For Elsa 💌</title>
+  <link rel="preload" as="image" href="elsa%201.jpeg">
+  <link rel="preload" as="image" href="elsa%202.jpeg">
+  <link rel="preload" as="image" href="elsa%203.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf6f0;
+      --cream-warm: #f5efe6;
+      --terracotta: #c47b5a;
+      --terracotta-dark: #a85d3e;
+      --sage: #8b9a7a;
+      --ink: #2c2419;
+      --blush: #e8c4b8;
+      --gold: #c9a227;
+      --shadow-soft: 0 4px 20px rgba(44, 36, 25, 0.06);
+      --shadow-med: 0 8px 32px rgba(44, 36, 25, 0.1), 0 2px 8px rgba(44, 36, 25, 0.04);
+      --shadow-float: 0 20px 50px rgba(44, 36, 25, 0.12), 0 4px 16px rgba(44, 36, 25, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(165deg, var(--cream) 0%, var(--cream-warm) 50%, var(--cream) 100%);
+      background-attachment: fixed;
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: default;
+      -webkit-font-smoothing: antialiased;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .page, .msg-opener .hey, .msg-opener .photo-wrap { transition: none; animation: none; }
+      .page { transform: none; }
+      .page.visible { transform: none; }
+      .msg-opener .hey { opacity: 1; transform: none; }
+      .hint::after { animation: none; }
+      .msg-closing .photo-wrap, .msg-closing .love, .msg-closing .from, .msg-closing .always, .msg-closing .date { animation: none; }
+      .bg-shapes::before, .bg-shapes .shape, .bg-sparkle, .bg-particle { animation: none; }
+    }
+
+    /* Background: soft shapes + grain + romantic effects */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-shapes::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 120% 80% at 70% 20%, rgba(196, 123, 90, 0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse 100% 60% at 20% 80%, rgba(139, 154, 122, 0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse 80% 100% at 50% 50%, rgba(232, 196, 184, 0.05) 0%, transparent 45%);
+      animation: ambientPulse 12s ease-in-out infinite;
+    }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+    .bg-shapes::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.6;
+    }
+    .bg-shapes .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(60px);
+    }
+    .bg-shapes .shape-1 {
+      width: 420px; height: 420px; background: var(--terracotta);
+      top: -120px; right: -80px;
+      animation: floatBlob 18s ease-in-out infinite;
+    }
+    .bg-shapes .shape-2 {
+      width: 320px; height: 320px; background: var(--sage);
+      bottom: 5%; left: -100px;
+      animation: floatBlob 22s ease-in-out infinite 2s;
+    }
+    .bg-shapes .shape-3 {
+      width: 220px; height: 220px; background: var(--blush);
+      top: 45%; left: 25%;
+      animation: floatBlob 20s ease-in-out infinite 1s;
+    }
+    .bg-shapes .shape-4 {
+      width: 180px; height: 180px; background: var(--gold);
+      top: 15%; left: 10%;
+      opacity: 0.06;
+      filter: blur(50px);
+      animation: floatBlob 25s ease-in-out infinite 0.5s;
+    }
+    @keyframes floatBlob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(15px, -20px) scale(1.02); }
+      50% { transform: translate(-10px, 10px) scale(0.98); }
+      75% { transform: translate(-20px, -15px) scale(1.01); }
+    }
+    .bg-sparkle {
+      position: absolute;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+    .bg-sparkle:nth-child(5) { top: 12%; left: 18%; animation: twinkle 4s ease-in-out infinite; }
+    .bg-sparkle:nth-child(6) { top: 25%; right: 22%; animation: twinkle 5s ease-in-out infinite 0.8s; }
+    .bg-sparkle:nth-child(7) { top: 60%; left: 15%; animation: twinkle 4.5s ease-in-out infinite 1.2s; }
+    .bg-sparkle:nth-child(8) { bottom: 30%; right: 18%; animation: twinkle 5.2s ease-in-out infinite 0.3s; }
+    .bg-sparkle:nth-child(9) { bottom: 18%; left: 25%; animation: twinkle 4.8s ease-in-out infinite 1.5s; }
+    .bg-sparkle:nth-child(10) { top: 40%; right: 8%; animation: twinkle 5.5s ease-in-out infinite 0.6s; }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 0.9; transform: scale(1.2); }
+    }
+    .bg-particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--blush);
+      opacity: 0.25;
+    }
+    .bg-particle:nth-child(11) { width: 4px; height: 4px; top: 20%; left: 30%; animation: drift 20s linear infinite; }
+    .bg-particle:nth-child(12) { width: 3px; height: 3px; top: 70%; left: 60%; animation: drift 25s linear infinite 3s; opacity: 0.2; }
+    .bg-particle:nth-child(13) { width: 5px; height: 5px; top: 35%; right: 25%; animation: drift 22s linear infinite 1s; opacity: 0.15; }
+    .bg-particle:nth-child(14) { width: 3px; height: 3px; bottom: 25%; left: 40%; animation: drift 28s linear infinite 2s; opacity: 0.2; }
+    .bg-particle:nth-child(15) { width: 4px; height: 4px; top: 55%; left: 70%; animation: drift 24s linear infinite 4s; opacity: 0.18; }
+    @keyframes drift {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(30px, -40px); }
+      50% { transform: translate(-20px, 20px); }
+      75% { transform: translate(10px, 30px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    #messages {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      padding-top: 3.5rem;
+      padding-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(16px) scale(0.99);
+      transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      pointer-events: none;
+    }
+
+    .page.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .page[data-index="14"].visible {
+      transition-duration: 1s;
+    }
+
+    .page .content {
+      max-width: 90%;
+    }
+
+    /* Message 1: Big warm opener */
+    .msg-opener {
+      text-align: center;
+    }
+    .msg-opener .hey {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      color: var(--terracotta-dark);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+    }
+    .msg-opener .photo-wrap {
+      width: clamp(100px, 28vw, 160px);
+      height: clamp(100px, 28vw, 160px);
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: var(--shadow-float), 0 0 0 4px var(--blush), inset 0 1px 0 rgba(255,255,255,0.4);
+      animation: fadeInDown 0.8s ease-out;
+    }
+    .msg-opener .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .msg-opener .sub {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      color: var(--sage);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .msg-opener .date {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      color: var(--terracotta-dark);
+      opacity: 0.85;
+      letter-spacing: 0.08em;
+    }
+    .msg-opener .hey {
+      animation: fadeInDown 1s ease-out 0.15s both;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Message 2: Left-aligned note */
+    .msg-note-left {
+      text-align: left;
+      max-width: 420px;
+      padding-left: 0.5rem;
+      border-left: 3px solid var(--blush);
+    }
+    .msg-note-left .text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
+      line-height: 1.55;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .msg-note-left .text strong {
+      color: var(--terracotta);
+      font-style: normal;
+    }
+
+    /* Message 3: Sticky note style */
+    .msg-sticky {
+      transform: rotate(-2deg);
+      background: linear-gradient(145deg, #fffcf5 0%, #fff6e3 40%, #ffefd0 100%);
+      padding: 1.75rem 2rem;
+      box-shadow: var(--shadow-med), 0 0 0 1px rgba(201, 162, 39, 0.12), 2px 3px 0 rgba(0,0,0,0.03);
+      border-radius: 3px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .msg-sticky .text {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.5rem, 4vw, 1.9rem);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    /* Message 4: Right-side bubble / quote */
+    .msg-bubble {
+      margin-left: auto;
+      max-width: 340px;
+      background: linear-gradient(145deg, #f0ddd5 0%, var(--blush) 100%);
+      padding: 1.5rem 1.75rem;
+      border-radius: 24px 24px 8px 24px;
+      box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+    .msg-bubble .text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    /* Message 5: Typewriter-style line */
+    .msg-typewriter {
+      text-align: center;
+    }
+    .msg-typewriter .text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--terracotta-dark);
+      font-weight: 600;
+    }
+    .msg-typewriter .text .cursor::after {
+      content: '|';
+      animation: blink 0.8s step-end infinite;
+      color: var(--sage);
+    }
+    .msg-typewriter .photo-wrap {
+      width: clamp(80px, 22vw, 120px);
+      height: clamp(80px, 22vw, 120px);
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: var(--shadow-med), 0 0 0 3px rgba(255,255,255,0.6);
+    }
+    .msg-typewriter .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Message 6: Scattered / floating words */
+    .msg-scatter {
+      position: relative;
+      min-height: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+    }
+    .msg-scatter .word {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--ink);
+      opacity: 0.9;
+      transition: transform 0.3s ease;
+    }
+    .msg-scatter .word:nth-child(odd) { color: var(--terracotta); }
+    .msg-scatter .word:nth-child(3n) { transform: rotate(-3deg); }
+    .msg-scatter .word:nth-child(3n+1) { transform: rotate(2deg); }
+    .msg-scatter:hover .word { transform: scale(1.05) rotate(0deg); }
+
+    /* Message 7: Card / centered but styled */
+    .msg-card {
+      text-align: center;
+      padding: 2rem 2.25rem;
+      background: rgba(255,255,255,0.5);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .msg-card .text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+      line-height: 1.65;
+      color: var(--ink);
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .msg-card .text .highlight {
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    /* Single bold line (hero) */
+    .msg-hero {
+      text-align: center;
+    }
+    .msg-hero .text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.25rem);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--terracotta-dark);
+      max-width: 420px;
+      margin: 0 auto;
+      letter-spacing: 0.02em;
+    }
+
+    /* Bridge slide before closing */
+    .msg-bridge {
+      text-align: center;
+    }
+    .msg-bridge .text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .msg-bridge .text-sub {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400;
+      color: var(--sage);
+      letter-spacing: 0.12em;
+      margin-top: 0.75rem;
+    }
+
+    /* Big closing – arrival moment */
+    .msg-closing {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .msg-closing .photo-wrap {
+      width: clamp(100px, 26vw, 140px);
+      height: clamp(100px, 26vw, 140px);
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: var(--shadow-float), 0 0 0 4px rgba(255,255,255,0.9), 0 0 0 6px var(--blush), inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+    .msg-closing .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .msg-closing .love {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.25rem, 7vw, 3.5rem);
+      font-weight: 600;
+      color: var(--terracotta-dark);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-top: 0.25rem;
+    }
+    .msg-closing .from {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.2em;
+      margin-top: 1.25rem;
+    }
+    .msg-closing .always {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--sage);
+      margin-top: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+    .msg-closing .date {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      color: var(--sage);
+      margin-top: 1.25rem;
+      letter-spacing: 0.15em;
+    }
+    .page[data-index="14"].visible .msg-closing .photo-wrap { animation: closeReveal 0.8s ease-out both; }
+    .page[data-index="14"].visible .msg-closing .love { animation: closeReveal 0.6s ease-out 0.2s both; }
+    .page[data-index="14"].visible .msg-closing .from { animation: closeReveal 0.5s ease-out 0.45s both; }
+    .page[data-index="14"].visible .msg-closing .always { animation: closeReveal 0.5s ease-out 0.55s both; }
+    .page[data-index="14"].visible .msg-closing .date { animation: closeReveal 0.5s ease-out 0.65s both; }
+    @keyframes closeReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hint */
+    .hint {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--sage);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.5s ease;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .hint::after {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 3px;
+      margin: 0.4rem auto 0;
+      border-radius: 50%;
+      background: var(--terracotta);
+      opacity: 0.6;
+      animation: hintPulse 2s ease-in-out infinite;
+    }
+    @keyframes hintPulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 0.8; transform: scale(1); }
+    }
+    .hint.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .hint.hidden::after { display: none; }
+
+    /* Progress dots (optional, minimal) */
+    .progress {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .progress span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blush);
+      opacity: 0.7;
+      transition: transform 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+    }
+    .progress span.active {
+      background: var(--terracotta);
+      opacity: 1;
+      transform: scale(1.35);
+    }
+
+    .back-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 20;
+      padding: 0.5rem 1rem;
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      background: transparent;
+      border: 1px solid var(--blush);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: opacity 0.3s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .back-btn:hover {
+      color: var(--terracotta-dark);
+      border-color: var(--terracotta);
+      background: rgba(196, 123, 90, 0.08);
+    }
+    .back-btn.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .back-btn:focus-visible {
+      outline: 2px solid var(--terracotta);
+      outline-offset: 3px;
+    }
+    @media (max-width: 480px) {
+      .page {
+        padding: 1.25rem;
+        padding-top: max(3rem, env(safe-area-inset-top) + 2rem);
+        padding-bottom: max(4.5rem, env(safe-area-inset-bottom) + 3.5rem);
+      }
+      .page .content { max-width: 92%; }
+      /* Slide 0: opener – center */
+      .page[data-index="0"] { justify-content: center; align-items: center; }
+      /* Slide 1: hero – center */
+      .page[data-index="1"] { justify-content: center; align-items: center; }
+      /* Slide 2: note – left */
+      .page[data-index="2"] { justify-content: flex-start; align-items: flex-start; padding-top: max(2.5rem, env(safe-area-inset-top) + 1.5rem); }
+      .page[data-index="2"] .content { margin-right: auto; }
+      /* Slide 3: bubble – left, low */
+      .page[data-index="3"] { justify-content: flex-start; align-items: flex-end; padding-bottom: max(3rem, env(safe-area-inset-bottom) + 2rem); }
+      .page[data-index="3"] .content { margin-right: auto; }
+      /* Slide 4: sticky – right, rotation */
+      .page[data-index="4"] { justify-content: flex-end; align-items: center; }
+      .page[data-index="4"] .content { margin-left: auto; transform: rotate(-2deg); }
+      /* Slide 5: typewriter + photo – center */
+      .page[data-index="5"] { justify-content: center; align-items: flex-start; padding-top: max(2.5rem, env(safe-area-inset-top) + 1.5rem); }
+      /* Slide 6: scatter – center */
+      .page[data-index="6"] { justify-content: center; align-items: center; }
+      /* Slide 7: note (long) – left */
+      .page[data-index="7"] { justify-content: flex-start; align-items: flex-start; padding-top: max(2.5rem, env(safe-area-inset-top) + 1.5rem); }
+      .page[data-index="7"] .content { margin-right: auto; }
+      /* Slide 8: hero – center */
+      .page[data-index="8"] { justify-content: center; align-items: center; }
+      /* Slide 9: bubble – right */
+      .page[data-index="9"] { justify-content: flex-end; align-items: center; }
+      .page[data-index="9"] .content { margin-left: auto; }
+      /* Slide 10: scatter – center */
+      .page[data-index="10"] { justify-content: center; align-items: center; }
+      /* Slide 11: card – left */
+      .page[data-index="11"] { justify-content: flex-start; align-items: center; }
+      .page[data-index="11"] .content { margin-right: auto; }
+      /* Slide 12: sticky – right */
+      .page[data-index="12"] { justify-content: flex-end; align-items: center; }
+      .page[data-index="12"] .content { margin-left: auto; transform: rotate(1.5deg); }
+      /* Slide 13: bridge – center */
+      .page[data-index="13"] { justify-content: center; align-items: center; }
+      /* Slide 14: closing – center */
+      .page[data-index="14"] { justify-content: center; align-items: center; }
+      .msg-opener .photo-wrap { width: clamp(88px, 32vw, 140px); height: clamp(88px, 32vw, 140px); margin-bottom: 1rem; }
+      .msg-opener .hey { font-size: clamp(2rem, 10vw, 3.5rem); }
+      .msg-opener .sub { font-size: 0.85rem; letter-spacing: 0.15em; }
+      .msg-opener .date { font-size: 0.75rem; margin-top: 0.75rem; }
+      .msg-hero .text { font-size: clamp(1.35rem, 4.5vw, 1.9rem); }
+      .msg-note-left .text { font-size: clamp(1.2rem, 4.5vw, 1.6rem); }
+      .msg-sticky { padding: 1.35rem 1.5rem; max-width: 92%; }
+      .msg-sticky .text { font-size: clamp(1.35rem, 4.5vw, 1.7rem); }
+      .msg-bubble { padding: 1.25rem 1.5rem; max-width: 92%; }
+      .msg-bubble .text { font-size: 1rem; }
+      .msg-typewriter .photo-wrap { width: clamp(72px, 26vw, 100px); height: clamp(72px, 26vw, 100px); margin-bottom: 0.75rem; }
+      .msg-typewriter .text { font-size: clamp(1.25rem, 5vw, 1.6rem); }
+      .msg-scatter .word { font-size: clamp(1.2rem, 4.5vw, 1.7rem); }
+      .msg-card .text { font-size: clamp(1.15rem, 4vw, 1.5rem); }
+      .msg-bridge .text { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+      .msg-bridge .text-sub { font-size: 0.9rem; }
+      .msg-closing .photo-wrap { width: clamp(90px, 28vw, 120px); height: clamp(90px, 28vw, 120px); }
+      .msg-closing .love { font-size: clamp(2rem, 8vw, 3rem); }
+      .msg-closing .from { font-size: 0.9rem; }
+      .hint {
+        bottom: max(4rem, env(safe-area-inset-bottom) + 3.25rem);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+      }
+      .progress {
+        top: max(1.25rem, env(safe-area-inset-top) + 0.75rem);
+      }
+      .progress span { width: 5px; height: 5px; }
+      .back-btn {
+        bottom: max(1.25rem, env(safe-area-inset-bottom) + 0.75rem);
+        left: max(1rem, env(safe-area-inset-left) + 0.5rem);
+        padding: 0.5rem 0.9rem;
+        font-size: 0.7rem;
+        min-height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    <span class="bg-sparkle" aria-hidden="true"></span>
+    <span class="bg-sparkle" aria-hidden="true"></span>
+    <span class="bg-sparkle" aria-hidden="true"></span>
+    <span class="bg-sparkle" aria-hidden="true"></span>
+    <span class="bg-sparkle" aria-hidden="true"></span>
+    <span class="bg-sparkle" aria-hidden="true"></span>
+    <span class="bg-particle" aria-hidden="true"></span>
+    <span class="bg-particle" aria-hidden="true"></span>
+    <span class="bg-particle" aria-hidden="true"></span>
+    <span class="bg-particle" aria-hidden="true"></span>
+    <span class="bg-particle" aria-hidden="true"></span>
+  </div>
+
+  <p class="hint" id="hint">Click anywhere to continue</p>
+  <div class="progress" id="progress"></div>
+  <button type="button" class="back-btn hidden" id="backBtn" aria-label="Go back">← Go back</button>
+
+  <div id="messages">
+    <div class="page visible" data-index="0">
+      <div class="content msg-opener">
+        <div class="photo-wrap">
+          <img src="elsa%201.jpeg" alt="Elsa" width="160" height="160" loading="eager">
+        </div>
+        <p class="hey">Hey Elsa.</p>
+        <p class="sub">from Eleazer · click to open</p>
+        <p class="date">14 February 2026</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="1">
+      <div class="content msg-hero">
+        <p class="text">It's Valentine's Day.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="2">
+      <div class="content msg-note-left">
+        <p class="text">I figured I should say this properly instead of just thinking it.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="3">
+      <div class="content msg-bubble">
+        <p class="text">From the beginning, this was never casual.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="4">
+      <div class="content msg-sticky">
+        <p class="text">And somehow, that's what made it easy to choose you.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="5">
+      <div class="content msg-typewriter">
+        <div class="photo-wrap">
+          <img src="elsa%202.jpeg" alt="" width="120" height="120" loading="lazy">
+        </div>
+        <p class="text">Five months in, and I am still awed by you every day.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="6">
+      <div class="content msg-scatter">
+        <span class="word">you</span>
+        <span class="word">still</span>
+        <span class="word">feel…</span>
+        <span class="word">special.</span>
+      </div>
+    </div>
+
+    <div class="page" data-index="7">
+      <div class="content msg-note-left">
+        <p class="text">You've taught me to confront the things I took for granted and become more aware of my strengths and capabilities.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="8">
+      <div class="content msg-hero">
+        <p class="text">A hundred years on, and I will still choose you.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="9">
+      <div class="content msg-bubble">
+        <p class="text">A hundred Valentine's later, and you will still be my El.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="10">
+      <div class="content msg-scatter">
+        <span class="word">My</span>
+        <span class="word">Elsa.</span>
+        <span class="word">My</span>
+        <span class="word">love.</span>
+      </div>
+    </div>
+
+    <div class="page" data-index="11">
+      <div class="content msg-card">
+        <p class="text">I love you more than I can describe.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="12">
+      <div class="content msg-sticky">
+        <p class="text">And I can't wait until you are my wife.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="13">
+      <div class="content msg-bridge">
+        <p class="text">So.</p>
+        <p class="text-sub">Happy Valentine's, El.</p>
+      </div>
+    </div>
+
+    <div class="page" data-index="14">
+      <div class="content msg-closing">
+        <div class="photo-wrap">
+          <img src="elsa%203.jpeg" alt="" width="130" height="130" loading="lazy">
+        </div>
+        <p class="date">From</p>
+        <p class="love">A husband who waits.</p>
+        <p class="from">— Eleazer</p>
+        <p class="always">Always.</p>
+        <p class="date">14 February 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const hint = document.getElementById('hint');
+    const progressEl = document.getElementById('progress');
+    const backBtn = document.getElementById('backBtn');
+    let current = 0;
+
+    // Progress dots
+    pages.forEach((_, i) => {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      progressEl.appendChild(dot);
+    });
+    const dots = progressEl.querySelectorAll('span');
+
+    const lastIndex = pages.length - 1;
+
+    function updateUI() {
+      backBtn.classList.toggle('hidden', current === 0);
+      backBtn.textContent = current === lastIndex ? '← Back to start' : '← Go back';
+      backBtn.setAttribute('aria-label', current === lastIndex ? 'Back to start' : 'Go back one step');
+      if (current === 0) hint.classList.remove('hidden');
+      else hint.classList.add('hidden');
+    }
+
+    function goNext(e) {
+      if (e && e.target.closest('.back-btn')) return;
+      if (current >= lastIndex) return;
+      pages[current].classList.remove('visible');
+      current++;
+      pages[current].classList.add('visible');
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      updateUI();
+    }
+
+    function goPrev() {
+      if (current <= 0) return;
+      pages[current].classList.remove('visible');
+      current--;
+      pages[current].classList.add('visible');
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      updateUI();
+    }
+
+    function goToStart() {
+      pages[current].classList.remove('visible');
+      current = 0;
+      pages[current].classList.add('visible');
+      dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+      updateUI();
+    }
+
+    function onBackClick(e) {
+      e.stopPropagation();
+      if (current === lastIndex) goToStart();
+      else goPrev();
+    }
+
+    document.addEventListener('click', goNext);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goNext(e); } });
+    backBtn.addEventListener('click', onBackClick);
+  </script>
+</body>
+</html>
